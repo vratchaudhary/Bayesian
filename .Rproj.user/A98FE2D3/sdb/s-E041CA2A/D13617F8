@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "rm(list=ls(all=T))\n#setwd('U:\\\\uf\\\\courses\\\\bayesian course\\\\2018\\\\biomass recovery')\nparam=read.csv('estimated parameters.csv',as.is=T)\n\n#0) What is the mean and 95% CI of the parameters?\napply(param,2,mean)\napply(param,2,quantile,c(0.025,0.975))\n\n#1) What is the posterior distribution for biomass for fertil=3 and time1=10 years?\nfertil=3\ntime1=10\nres=exp(param$b0+param$b1*fertil)*time1/(param$b+time1)\nplot(density(res),type='l')\n\n#2) What is the mean predicted biomass for fertil=3 and time1=10 years?\nmean(res)\n\n#3) Besides a point estimate, give me some measure of uncertainty for the mean predicted biomass for fertil=3 and time1=10 years?\nquantile(res,c(0.025,0.975))\n\n#4) Say that there is a funding mechanism that provides funds for forest areas with biomass > 6. \n#What is the probability that the average biomass will be greater than 6?\n\nmean(res>6)\n\n#4) What does the relationship between time and biomass look like for fertil=3 without uncertainty?\ntime1=0:100\nntime=length(time1)\n\nres=rep(NA,ntime)\nfor (i in 1:ntime){\n  tmp=exp(param$b0+param$b1*fertil)*time1[i]/(param$b+time1[i])\n  res[i]=mean(tmp)\n}\nplot(time1,res,type='l')\n\n#5) What does the relationship between time and biomass look like for fertil=3 with uncertainty?\ntime1=0:100\nntime=length(time1)\n\nres=matrix(NA,ntime,3)\nfor (i in 1:ntime){\n  tmp=exp(param$b0+param$b1*fertil)*time1[i]/(param$b+time1[i])\n  res[i,]=quantile(tmp,c(0.025,0.5,0.975))\n}\nplot(time1,res[,2],type='l',ylim=range(res))\nlines(time1,res[,1],col='grey')\nlines(time1,res[,3],col='grey')\n\n#6) Contrast that with the relationship between time and biomass for fertil=1\nfertil=1\nres=matrix(NA,ntime,3)\nfor (i in 1:ntime){\n  tmp=exp(param$b0+param$b1*fertil)*time1[i]/(param$b+time1[i])\n  res[i,]=c(mean(tmp),quantile(tmp,c(0.025,0.975)))\n}\nlines(time1,res[,1],type='l',col='red')\nlines(time1,res[,2],col='pink')\nlines(time1,res[,3],col='pink')\n\n",
+    "created" : 1549988518715.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3382355210",
+    "id" : "D13617F8",
+    "lastKnownWriteTime" : 1517409685,
+    "last_content_update" : 1549988557824,
+    "path" : "~/Dropbox/Bayesian/Multiparam_MLE_example.R",
+    "project_path" : "Multiparam_MLE_example.R",
+    "properties" : {
+    },
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

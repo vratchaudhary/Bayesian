@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "I poisson lamda is mean and variance, which is usually a continuous variable. For posson link function is usually loglambda.\n\nyi~ poisson (lambda i)\n\nlambdai = exp( beta 0+ beta1 xi)# this is correct as lambda cant be 0 and exponential is ensuring that\n\nsay x1= elavation\nx2= ndvi\ny= number of trees\n\n",
+    "created" : 1516370544974.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "830033887",
+    "id" : "6C8A4E5B",
+    "lastKnownWriteTime" : 140733193388038,
+    "last_content_update" : 1517232945856,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "text"
+}

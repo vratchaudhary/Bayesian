@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "n=400\nz=rbinom(n,size=1,prob=0.2)\na.prior= 1 ##just real number parameters\nb.prior= 1\npi.old= 0.5 \n###t(pi.new)*q(pi.old|pi.new)/t(pi.old)*q(pi.new|pi.old)=\n# exp(log|t(pi.new)*q(pi.old|pi.new)/t(pi.old)*q(pi.new|pi.old))=\n#exp(log|t(pi.new)+log|q(pi.old|pi.new))-log|t(pi.old)-log|q(pi.new|pi.old))\npi.new=runif(1)\n##either accept or reject pi.new\n#now find old target pi from log|t(pi.old)+log|q(pi.new|pi.old))\ntarget.pi.old=sum(dbinom(z,size=1,prob=pi.old,log=T)+\n                    dbeta(pi.old,a.prior,b.prior,log=T))\n###now writing the same expression for pi.new\ntarget.pi.new=sum(dbinom(z,size=1,prob=pi.new,log=T)+\n                    dbeta(pi.new,a.prior,b.prior,log=T))\npthresh=min(c(1, exp(target.pi.new-target.pi.old)))\nrand=runif(1)\naccept=rand<pthresh\naccept\n\n",
+    "created" : 1519653308816.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3107366613",
+    "id" : "EB77DBA",
+    "lastKnownWriteTime" : 1519654111,
+    "last_content_update" : 1519654111370,
+    "path" : "~/Dropbox/Bayesian/metropolis_hastings_example.R",
+    "project_path" : "metropolis_hastings_example.R",
+    "properties" : {
+        "tempName" : "Untitled4"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

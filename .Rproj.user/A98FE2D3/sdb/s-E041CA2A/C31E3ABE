@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#####\n#######\n#generate some fake data\nrm(list=ls(all=T))\nset.seed(1)\n#true parameter values\ndelta.true=delta=0.3\nN=200 #true population size\n#number of surveys \nT1=4\n#observation status of each individual\nD1=matrix(0,N,T1)\nfor (i in 1:T1){\n  D1[,i]=rbinom(N,size=1,p=delta)\n}\n\n#in the observed data, we do not have individuals that were never observed\ncond=apply(D1,1,sum)!=0\ndata1=D1[cond,]\nnrow(data1) #number of individuals we get to observe at least once\n###never observed cases \ncond=apply(D1,1,sum)==0\ndata1=D1[cond,]\nnrow(data1) \n#########so you are going to remove these cases from the data, and the actual \n##data will never have individuals that were never seen \n#####now individuals can either exist or not exists, so its 0 and 1\n##so zi~bernouli (pi) will be our distribution and pi is the \n##pi is the estimate of fraction of individuals that exists. \n###now what actually is pi, is used to correct\n\n##inits <- list \n\n",
+    "created" : 1519047758582.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1363180188",
+    "id" : "C31E3ABE",
+    "lastKnownWriteTime" : 1519051606,
+    "last_content_update" : 1519051606635,
+    "path" : "~/Dropbox/Bayesian/Mark recapture.R",
+    "project_path" : "Mark recapture.R",
+    "properties" : {
+        "tempName" : "Untitled4"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

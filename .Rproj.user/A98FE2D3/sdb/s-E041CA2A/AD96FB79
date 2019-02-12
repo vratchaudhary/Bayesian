@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "x1=2*pi*seq(from=0,to=,length.out=1000)\ny=sin(x1)\nplot(x1,y)\n#########\nb0=2\nb1=3\nb2=4\nsigma=0.3\nn=1000\nx1=runif(n)\nx2=runif(n)\ny=rnorm(n,mean=b0+b1*x1+2*x2,sd=sqrt(sigma))\ndat=data.frame(y=y,x=x1,x2=x2)\n\n##testing the model\nres=lm(y~x1+x2,data=dat)\nsummar(res)###check your model if the coeffcients ~ b0,b1, b2 vlues you put\n??rburn\n###bernoulu\n",
+    "created" : 1517839008739.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "371519128",
+    "id" : "AD96FB79",
+    "lastKnownWriteTime" : 1519051608,
+    "last_content_update" : 1519051608965,
+    "path" : "~/Dropbox/Bayesian/generratinf fake data to test models.R",
+    "project_path" : "generratinf fake data to test models.R",
+    "properties" : {
+        "tempName" : "Untitled3"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

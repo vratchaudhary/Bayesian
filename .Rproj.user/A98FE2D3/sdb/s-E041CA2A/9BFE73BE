@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "first=\"VRATIKA\"\n\nlast=\"Chaudhary\"\n\nfull= c(first,last)\n",
+    "created" : 1517854355609.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "1943960258",
+    "id" : "9BFE73BE",
+    "lastKnownWriteTime" : 4294967302,
+    "last_content_update" : 1517854360825,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled3"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#samp.pi\nsamp.pi= function (param.N){\n  soma.21= sum(param$z1)\n  a1=soma.21=z1+a.pi\n  b1=N-soma.Z1-b.pi\n  rbeta(1,a1,bi)\n  \n}#delta\nsamp.delta=sunction(param,T1){\n  cond=parama$z1==1\n  tot.detect =sum(data[cond])\n  tot.nopport= sum(cond)*T1\n  a1=tot.detect+a.delta\n  b1=tot.noapport+tot.detect+b.delta\n  for(i in 1:T1){\n   delta[i]<-rbeta(1,a1,b1)\n  }\n  delta\n}\n\n###samp.z\nsamp.z1= function(param,T1){\nprob1.tmp=((1-param$delta)^T1) * param$pi\nprob0.tmp=(1-param$pi)\nprob1=prob1.tmp/(prob1.tmp-prob0.tmp)\ncond=apply(dat,1,sum)==0\nz1=rep(1,N)\nz1[cond]=rbinom(sum(cond), size=1,prob1)\nz1\n  \n  \n}\n\n############\n#############Creating fake data#######\nrm(list=ls())\nset.seed(1)\n#THE POPULATION\nN=400\n#surveYs\nT1=4\n#starting deltas\ndelta.true=c(0.5,0.5,0.5,0.5)\n###data\nD1= matrix(NA,N,T1)\n#lets fill the empty matrix for each survey\nfor(i in 1:T1){\n  D1[,i]= rbinom(N,size = 1, prob=delta.true[i])\n  \n}\n\ncond=apply(D1,1,sum)!=0##create a condition for the data so that not everything is o\ndata=D1[cond,]\nnrow=(data)\n#write.csv(data,\"testdata_pop.csv\")\n\n#########Gibbs sampler\nrm(list=ls())\nset.seed(1)\ndata=read.csv(\"testdata_pop.csv\")\n\n#specify function\nN=400\nT1=4\n#INTIAL PARAMS\npi= 0.5\ndelta=rep(0.5,T1)\nz1=rep(1)\ndelta=rep(NA,T1)\n\n\n\n",
+    "created" : 1519393241895.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "168920086",
+    "id" : "B68AD501",
+    "lastKnownWriteTime" : 1519395949,
+    "last_content_update" : 1519395949584,
+    "path" : "~/Dropbox/Bayesian/Gibbs_sampler_function.R",
+    "project_path" : "Gibbs_sampler_function.R",
+    "properties" : {
+        "tempName" : "Untitled4"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

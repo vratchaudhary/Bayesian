@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#I poisson lamda is mean and variance, which is usually a continuous variable. For posson link function is usually loglambda.\n#yi~ poisson (lambda i)\n#lambdai = exp( beta 0+ beta1 xi)# this is correct as lambda cant be 0 and exponential is ensuring that\n#say x1= elavation\n#x2= ndvi\n#y= number of trees\n\n######creating fake data\n#y= poisson (lambda)\n##lambdai = exp( beta 0+ beta1 xi)# \n\nb0=b1=b2=1\n###creating standardized data by taking normal values with mean and variance of 0 and 1\nelevation = rnorm(100,0,1)##for every tree we need an eleavtion value, length of data and mean and variance\nndvi= rnorm(100,0,1)\n\nlambda=exp(b0+b1*elevation+b2*ndvi)\ny=rpois(100,lambda)\nhist(y)\ndata=data.frame(y=y, x1=eleavation, x2=ndvi)\n\n####MLE\n# you need your likelihood when you are writing your MLE\n###we said our data come from a poisson distribution\n###Analytically you would create loglikelihood, in R you use a negative loglikeihood as \n#the optimizer is the minimzer in R, not a maximizer\n\n##create a function\nnegloglik<- function(dat, par){\n  b0= par[1]\n  b1=par[2]\n  b2=par[3]\n  #lambda\n  lambda=exp(b0+b1*dat$x1+b2*dat$x2)\n  #or lambda=exp(b0+b1*dat[,2]+b2*dat[,3])\n###the sum of neg log likelihood\nLL<- -sum(dpois(dat$y,lambda,log=T )) # dpos= prob density, rpos= random poisson, qpos= quantile pos function\n##we are looking for density\n####we are summing the area under the curve, and it has to be negative as we are looking for negative loglikelihood\nreturn(LL)\n}\n\n##initial parameters\nb0=b1=b2=0\ninit_par=c(b0,b1,b2)\n\n####MLE, nelder mead method is the default method\n?optim\nM.like<- optim(par=init_par, fn=negloglik,dat=data)",
+    "created" : 1549988510120.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "476552835",
+    "id" : "C188DE31",
+    "lastKnownWriteTime" : 1516371989,
+    "last_content_update" : 1516371989,
+    "path" : "~/Dropbox/Bayesian/MLE.R",
+    "project_path" : "MLE.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

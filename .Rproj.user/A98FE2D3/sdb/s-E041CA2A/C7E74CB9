@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "########\n########https://bayescourse.updog.co/8A_MLE.html\nparam<- read.csv(\"estimated parameters.csv\", header=T)\nparam\n###calculate mean and 95% CI for the params\nm.b1<-mean(param$b0)\nm.b2<-mean(param$b1)\nm.b3<-mean(param$b)\nm.theta<-mean(param$theta2)\n###for gamma distribution\nmean<- c(m.b1,m.b2,m.b3,m.theta)\nmean\nc1<-quantile(param$b0,c(0.025,0.975))\nc2<-quantile(param$b1,c(0.025,0.975))\nc3<-quantile(param$b,c(0.025,0.975))\nc4<-quantile(param$theta,c(0.025,0.975))\nCI<- c(c1,c2,c3,c4)\nmean\nCI\n\n#########calcualte the expression for biomass#depends on B0, b1, and b\n#########for fertility of 3, and time for 10 years\n######obtain post distribution for mean biomass\n# E[B]= exp (b0+b1F)*t/b+t\n\nlibrary(dplyr)\nparam2= exp(param$b0+param$b1*3)*10/(param$b+10)\n#pdf\n\nplot(density(param2),type='l')\nmean(param2)\nquantile(param2, c(0.025,0.975))\n\n##what is the probability that biomass >6 for f=3, t=10?\n#integral of distribution of area under the curve\n\nmean(param2>6)#in R param2>6 generate length (param2) numbers of true and false\n#if we sum (param2>6), gives us count of samples >6, as it is summing number of trues\n\n######plot time and biomass, for fertility=3\ntime= seq(1,100, by=1)\nparam3= exp(param$b0+param$b1*3)*time/(param$b+time)\nlength(param3)\nplot(time, param3[1:100], type='l')\n#### at each time step\ntime= seq(0,100, by=1)\nntime= length(time)\n \n#empty matrix\nres=rep(NA, ntime)\nres1<- matrix(NA,ntime,3)\n\n\nfor (i in 1:ntime) {\nparam3= exp(param$b0+param$b1*3)*time[i]/(param$b+time[i])\nres1[i,]= quantile(param3,c(0.025,0.5,0.975))\nprint(res1)\n  }\n  \n  plot(time,res1[,2], type='l', ylim= range(res1))\n  lines(time, res1[,1], type = 'l', col='blue')\n  lines(time, res1[,3], type = 'l', col='blue')\n  ",
+    "created" : 1517405600414.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1923010606",
+    "id" : "C7E74CB9",
+    "lastKnownWriteTime" : 1517411033,
+    "last_content_update" : 1517411033211,
+    "path" : "~/Dropbox/Bayesian/multiparam_mle_example_myown.R",
+    "project_path" : "multiparam_mle_example_myown.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
